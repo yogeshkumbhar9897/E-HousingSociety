@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="683db24c20a5470a8128670b25e870f3" Name="Diagram1">
+        <EntityTypeShape EntityType="FinalProject_DBModel.T_ErrorLogs" Width="1.5" PointX="1.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalProject_DBModel.T_OTP_Details" Width="1.5" PointX="10" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalProject_DBModel.T_PasswordHistoryLog" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalProject_DBModel.T_Roles" Width="1.5" PointX="3.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalProject_DBModel.T_Users" Width="1.5" PointX="5.875" PointY="0.625" IsExpanded="true" />
+        <AssociationConnector Association="FinalProject_DBModel.FK__T_OTP_Det__UserI__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalProject_DBModel.FK__T_Passwor__UserI__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalProject_DBModel.FK__T_Users__RoleId__2A4B4B5E" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FinalProject_DBModel.T_Bills" Width="1.5" PointX="1.125" PointY="3.25" />
+        <EntityTypeShape EntityType="FinalProject_DBModel.T_Complaints" Width="1.5" PointX="8.125" PointY="3.625" />
+        <EntityTypeShape EntityType="FinalProject_DBModel.T_FamilyMembers" Width="1.5" PointX="3.375" PointY="2.375" />
+        <AssociationConnector Association="FinalProject_DBModel.FK__T_Bills__UserId__52593CB8" />
+        <AssociationConnector Association="FinalProject_DBModel.FK__T_Complai__UserI__4F7CD00D" />
+        <AssociationConnector Association="FinalProject_DBModel.FK__T_FamilyM__UserI__4CA06362" />
+        <EntityTypeShape EntityType="FinalProject_DBModel.T_Events" Width="1.5" PointX="11.75" PointY="0.5" />
+        <EntityTypeShape EntityType="FinalProject_DBModel.T_Notices" Width="1.5" PointX="10.375" PointY="3.375" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

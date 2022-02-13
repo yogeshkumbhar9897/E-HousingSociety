@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinalProject_DBModelStoreContainer" CdmEntityContainer="FinalProject_DBEntities">
+    <EntitySetMapping Name="T_ErrorLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_ErrorLogs)">
+        <MappingFragment StoreEntitySet="T_ErrorLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Method" ColumnName="Method" />
+          <ScalarProperty Name="ErrorOn" ColumnName="ErrorOn" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_OTP_Details">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_OTP_Details)">
+        <MappingFragment StoreEntitySet="T_OTP_Details">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="OTP" ColumnName="OTP" />
+          <ScalarProperty Name="GeneratedOn" ColumnName="GeneratedOn" />
+          <ScalarProperty Name="ValidTill" ColumnName="ValidTill" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_PasswordHistoryLog">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_PasswordHistoryLog)">
+        <MappingFragment StoreEntitySet="T_PasswordHistoryLog">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+          <ScalarProperty Name="OldPassword" ColumnName="OldPassword" />
+          <ScalarProperty Name="NewPassword" ColumnName="NewPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_Roles)">
+        <MappingFragment StoreEntitySet="T_Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Users">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_Users)">
+        <MappingFragment StoreEntitySet="T_Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+          <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Bills">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_Bills)">
+        <MappingFragment StoreEntitySet="T_Bills">
+          <ScalarProperty Name="Light" ColumnName="Light" />
+          <ScalarProperty Name="Water" ColumnName="Water" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CulturalFund" ColumnName="CulturalFund" />
+          <ScalarProperty Name="EmergencyFund" ColumnName="EmergencyFund" />
+          <ScalarProperty Name="Maintenance" ColumnName="Maintenance" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Complaints">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_Complaints)">
+        <MappingFragment StoreEntitySet="T_Complaints">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ComplaintType" ColumnName="ComplaintType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_FamilyMembers">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_FamilyMembers)">
+        <MappingFragment StoreEntitySet="T_FamilyMembers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+          <ScalarProperty Name="MemberAge" ColumnName="MemberAge" />
+          <ScalarProperty Name="MemberGender" ColumnName="MemberGender" />
+          <ScalarProperty Name="MemberRelation" ColumnName="MemberRelation" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Events">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_Events)">
+        <MappingFragment StoreEntitySet="T_Events">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Notices">
+      <EntityTypeMapping TypeName="FinalProject_DBModel.T_Notices">
+        <MappingFragment StoreEntitySet="T_Notices">
+          <ScalarProperty Name="MeetingTime" ColumnName="MeetingTime" />
+          <ScalarProperty Name="MeetingDate" ColumnName="MeetingDate" />
+          <ScalarProperty Name="MeetingName" ColumnName="MeetingName" />
+          <ScalarProperty Name="Announcement" ColumnName="Announcement" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

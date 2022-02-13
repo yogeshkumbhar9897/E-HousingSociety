@@ -1,0 +1,10 @@
+C:\Users\Acer\Desktop\Project\FinalProject\UnitTestProject\bin\Debug\UnitTestProject.dll
+C:\Users\Acer\Desktop\Project\FinalProject\UnitTestProject\bin\Debug\UnitTestProject.pdb
+C:\Users\Acer\Desktop\Project\FinalProject\UnitTestProject\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Acer\Desktop\Project\FinalProject\UnitTestProject\bin\Debug\MyLoggerLib.dll
+C:\Users\Acer\Desktop\Project\FinalProject\UnitTestProject\bin\Debug\MySecurityLib.dll
+C:\Users\Acer\Desktop\Project\FinalProject\UnitTestProject\bin\Debug\MyLoggerLib.pdb
+C:\Users\Acer\Desktop\Project\FinalProject\UnitTestProject\bin\Debug\MySecurityLib.pdb
+C:\Users\Acer\Desktop\Project\FinalProject\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+C:\Users\Acer\Desktop\Project\FinalProject\UnitTestProject\obj\Debug\UnitTestProject.dll
+C:\Users\Acer\Desktop\Project\FinalProject\UnitTestProject\obj\Debug\UnitTestProject.pdb

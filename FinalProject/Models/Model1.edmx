@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FinalProject_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_Bills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CulturalFund" Type="int" />
+          <Property Name="EmergencyFund" Type="int" />
+          <Property Name="Maintenance" Type="int" />
+          <Property Name="Water" Type="int" />
+          <Property Name="Light" Type="int" />
+          <Property Name="Total" Type="int" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="T_Complaints">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComplaintType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="T_ErrorLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Source" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Method" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ErrorOn" Type="datetime" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="StackTrace" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EventDate" Type="datetime" Nullable="false" />
+          <Property Name="EventTime" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_FamilyMembers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MemberAge" Type="int" Nullable="false" />
+          <Property Name="MemberGender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MemberRelation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="T_Notices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Announcement" Type="varchar" MaxLength="250" />
+          <Property Name="MeetingName" Type="varchar" MaxLength="50" />
+          <Property Name="MeetingDate" Type="date" />
+          <Property Name="MeetingTime" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="T_OTP_Details">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="OTP" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="GeneratedOn" Type="datetime" Nullable="false" />
+          <Property Name="ValidTill" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_PasswordHistoryLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="ChangedOn" Type="datetime" Nullable="false" />
+          <Property Name="OldPassword" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NewPassword" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IsOnline" Type="bit" Nullable="false" />
+          <Property Name="IsLocked" Type="bit" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__T_Bills__UserId__52593CB8">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="0..1" />
+          <End Role="T_Bills" Type="Self.T_Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Bills">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_Complai__UserI__4F7CD00D">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="0..1" />
+          <End Role="T_Complaints" Type="Self.T_Complaints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Complaints">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_FamilyM__UserI__4CA06362">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="0..1" />
+          <End Role="T_FamilyMembers" Type="Self.T_FamilyMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_FamilyMembers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_OTP_Det__UserI__35BCFE0A">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="0..1" />
+          <End Role="T_OTP_Details" Type="Self.T_OTP_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_OTP_Details">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_Passwor__UserI__32E0915F">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="0..1" />
+          <End Role="T_PasswordHistoryLog" Type="Self.T_PasswordHistoryLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_PasswordHistoryLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_Users__RoleId__2A4B4B5E">
+          <End Role="T_Roles" Type="Self.T_Roles" Multiplicity="0..1" />
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="T_Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FinalProject_DBModelStoreContainer">
+          <EntitySet Name="T_Bills" EntityType="Self.T_Bills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Complaints" EntityType="Self.T_Complaints" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_ErrorLogs" EntityType="Self.T_ErrorLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Events" EntityType="Self.T_Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_FamilyMembers" EntityType="Self.T_FamilyMembers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Notices" EntityType="Self.T_Notices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_OTP_Details" EntityType="Self.T_OTP_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_PasswordHistoryLog" EntityType="Self.T_PasswordHistoryLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Roles" EntityType="Self.T_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Users" EntityType="Self.T_Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__T_Bills__UserId__52593CB8" Association="Self.FK__T_Bills__UserId__52593CB8">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="T_Bills" EntitySet="T_Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_Complai__UserI__4F7CD00D" Association="Self.FK__T_Complai__UserI__4F7CD00D">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="T_Complaints" EntitySet="T_Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_FamilyM__UserI__4CA06362" Association="Self.FK__T_FamilyM__UserI__4CA06362">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="T_FamilyMembers" EntitySet="T_FamilyMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_OTP_Det__UserI__35BCFE0A" Association="Self.FK__T_OTP_Det__UserI__35BCFE0A">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="T_OTP_Details" EntitySet="T_OTP_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_Passwor__UserI__32E0915F" Association="Self.FK__T_Passwor__UserI__32E0915F">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="T_PasswordHistoryLog" EntitySet="T_PasswordHistoryLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_Users__RoleId__2A4B4B5E" Association="Self.FK__T_Users__RoleId__2A4B4B5E">
+            <End Role="T_Roles" EntitySet="T_Roles" />
+            <End Role="T_Users" EntitySet="T_Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FinalProject_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_ErrorLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Source" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Method" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ErrorOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Message" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_OTP_Details">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="OTP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GeneratedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ValidTill" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="T_Users" Relationship="Self.FK__T_OTP_Det__UserI__35BCFE0A" FromRole="T_OTP_Details" ToRole="T_Users" />
+        </EntityType>
+        <EntityType Name="T_PasswordHistoryLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="ChangedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OldPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NewPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="T_Users" Relationship="Self.FK__T_Passwor__UserI__32E0915F" FromRole="T_PasswordHistoryLog" ToRole="T_Users" />
+        </EntityType>
+        <EntityType Name="T_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="T_Users" Relationship="Self.FK__T_Users__RoleId__2A4B4B5E" FromRole="T_Roles" ToRole="T_Users" />
+        </EntityType>
+        <EntityType Name="T_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailId" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsOnline" Type="Boolean" Nullable="false" />
+          <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <NavigationProperty Name="T_OTP_Details" Relationship="Self.FK__T_OTP_Det__UserI__35BCFE0A" FromRole="T_Users" ToRole="T_OTP_Details" />
+          <NavigationProperty Name="T_PasswordHistoryLog" Relationship="Self.FK__T_Passwor__UserI__32E0915F" FromRole="T_Users" ToRole="T_PasswordHistoryLog" />
+          <NavigationProperty Name="T_Roles" Relationship="Self.FK__T_Users__RoleId__2A4B4B5E" FromRole="T_Users" ToRole="T_Roles" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_Bills" Relationship="FinalProject_DBModel.FK__T_Bills__UserId__52593CB8" FromRole="T_Users" ToRole="T_Bills" />
+          <NavigationProperty Name="T_Complaints" Relationship="FinalProject_DBModel.FK__T_Complai__UserI__4F7CD00D" FromRole="T_Users" ToRole="T_Complaints" />
+          <NavigationProperty Name="T_FamilyMembers" Relationship="FinalProject_DBModel.FK__T_FamilyM__UserI__4CA06362" FromRole="T_Users" ToRole="T_FamilyMembers" />
+        </EntityType>
+        <Association Name="FK__T_OTP_Det__UserI__35BCFE0A">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="0..1" />
+          <End Role="T_OTP_Details" Type="Self.T_OTP_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_OTP_Details">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_Passwor__UserI__32E0915F">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="0..1" />
+          <End Role="T_PasswordHistoryLog" Type="Self.T_PasswordHistoryLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_PasswordHistoryLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_Users__RoleId__2A4B4B5E">
+          <End Role="T_Roles" Type="Self.T_Roles" Multiplicity="0..1" />
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="T_Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FinalProject_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_ErrorLogs" EntityType="Self.T_ErrorLogs" />
+          <EntitySet Name="T_OTP_Details" EntityType="Self.T_OTP_Details" />
+          <EntitySet Name="T_PasswordHistoryLog" EntityType="Self.T_PasswordHistoryLog" />
+          <EntitySet Name="T_Roles" EntityType="Self.T_Roles" />
+          <EntitySet Name="T_Users" EntityType="Self.T_Users" />
+          <AssociationSet Name="FK__T_OTP_Det__UserI__35BCFE0A" Association="Self.FK__T_OTP_Det__UserI__35BCFE0A">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="T_OTP_Details" EntitySet="T_OTP_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_Passwor__UserI__32E0915F" Association="Self.FK__T_Passwor__UserI__32E0915F">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="T_PasswordHistoryLog" EntitySet="T_PasswordHistoryLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_Users__RoleId__2A4B4B5E" Association="Self.FK__T_Users__RoleId__2A4B4B5E">
+            <End Role="T_Roles" EntitySet="T_Roles" />
+            <End Role="T_Users" EntitySet="T_Users" />
+          </AssociationSet>
+          <FunctionImport Name="proc_AddRole">
+          <Parameter Name="role" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_ModifyRole">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="role" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_RemoveRole">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="T_Bills" EntityType="FinalProject_DBModel.T_Bills" />
+          <EntitySet Name="T_Complaints" EntityType="FinalProject_DBModel.T_Complaints" />
+          <EntitySet Name="T_FamilyMembers" EntityType="FinalProject_DBModel.T_FamilyMembers" />
+          <AssociationSet Name="FK__T_Bills__UserId__52593CB8" Association="FinalProject_DBModel.FK__T_Bills__UserId__52593CB8">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="T_Bills" EntitySet="T_Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_Complai__UserI__4F7CD00D" Association="FinalProject_DBModel.FK__T_Complai__UserI__4F7CD00D">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="T_Complaints" EntitySet="T_Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_FamilyM__UserI__4CA06362" Association="FinalProject_DBModel.FK__T_FamilyM__UserI__4CA06362">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="T_FamilyMembers" EntitySet="T_FamilyMembers" />
+          </AssociationSet>
+          <EntitySet Name="T_Events" EntityType="FinalProject_DBModel.T_Events" />
+          <EntitySet Name="T_Notices" EntityType="FinalProject_DBModel.T_Notices" />
+        </EntityContainer>
+        <EntityType Name="T_Bills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CulturalFund" Type="Int32" />
+          <Property Name="EmergencyFund" Type="Int32" />
+          <Property Name="Maintenance" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="T_Users" Relationship="FinalProject_DBModel.FK__T_Bills__UserId__52593CB8" FromRole="T_Bills" ToRole="T_Users" />
+          <Property Name="Water" Type="Int32" />
+          <Property Name="Light" Type="Int32" />
+        </EntityType>
+        <EntityType Name="T_Complaints">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComplaintType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="T_Users" Relationship="FinalProject_DBModel.FK__T_Complai__UserI__4F7CD00D" FromRole="T_Complaints" ToRole="T_Users" />
+        </EntityType>
+        <EntityType Name="T_FamilyMembers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberAge" Type="Int32" Nullable="false" />
+          <Property Name="MemberGender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberRelation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="T_Users" Relationship="FinalProject_DBModel.FK__T_FamilyM__UserI__4CA06362" FromRole="T_FamilyMembers" ToRole="T_Users" />
+        </EntityType>
+        <Association Name="FK__T_Bills__UserId__52593CB8">
+          <End Type="FinalProject_DBModel.T_Users" Role="T_Users" Multiplicity="0..1" />
+          <End Type="FinalProject_DBModel.T_Bills" Role="T_Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Bills">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_Complai__UserI__4F7CD00D">
+          <End Type="FinalProject_DBModel.T_Users" Role="T_Users" Multiplicity="0..1" />
+          <End Type="FinalProject_DBModel.T_Complaints" Role="T_Complaints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Complaints">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_FamilyM__UserI__4CA06362">
+          <End Type="FinalProject_DBModel.T_Users" Role="T_Users" Multiplicity="0..1" />
+          <End Type="FinalProject_DBModel.T_FamilyMembers" Role="T_FamilyMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_FamilyMembers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="T_Events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_Notices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Announcement" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MeetingName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MeetingDate" Type="DateTime" Precision="0" />
+          <Property Name="MeetingTime" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinalProject_DBModelStoreContainer" CdmEntityContainer="FinalProject_DBEntities">
+    <EntitySetMapping Name="T_ErrorLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_ErrorLogs)">
+        <MappingFragment StoreEntitySet="T_ErrorLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Method" ColumnName="Method" />
+          <ScalarProperty Name="ErrorOn" ColumnName="ErrorOn" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_OTP_Details">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_OTP_Details)">
+        <MappingFragment StoreEntitySet="T_OTP_Details">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="OTP" ColumnName="OTP" />
+          <ScalarProperty Name="GeneratedOn" ColumnName="GeneratedOn" />
+          <ScalarProperty Name="ValidTill" ColumnName="ValidTill" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_PasswordHistoryLog">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_PasswordHistoryLog)">
+        <MappingFragment StoreEntitySet="T_PasswordHistoryLog">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+          <ScalarProperty Name="OldPassword" ColumnName="OldPassword" />
+          <ScalarProperty Name="NewPassword" ColumnName="NewPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_Roles)">
+        <MappingFragment StoreEntitySet="T_Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Users">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_Users)">
+        <MappingFragment StoreEntitySet="T_Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+          <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Bills">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_Bills)">
+        <MappingFragment StoreEntitySet="T_Bills">
+          <ScalarProperty Name="Light" ColumnName="Light" />
+                <ScalarProperty Name="Water" ColumnName="Water" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CulturalFund" ColumnName="CulturalFund" />
+          <ScalarProperty Name="EmergencyFund" ColumnName="EmergencyFund" />
+          <ScalarProperty Name="Maintenance" ColumnName="Maintenance" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Complaints">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_Complaints)">
+        <MappingFragment StoreEntitySet="T_Complaints">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ComplaintType" ColumnName="ComplaintType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_FamilyMembers">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_FamilyMembers)">
+        <MappingFragment StoreEntitySet="T_FamilyMembers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+          <ScalarProperty Name="MemberAge" ColumnName="MemberAge" />
+          <ScalarProperty Name="MemberGender" ColumnName="MemberGender" />
+          <ScalarProperty Name="MemberRelation" ColumnName="MemberRelation" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Events">
+      <EntityTypeMapping TypeName="IsTypeOf(FinalProject_DBModel.T_Events)">
+        <MappingFragment StoreEntitySet="T_Events">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <EntitySetMapping Name="T_Notices">
+            <EntityTypeMapping TypeName="FinalProject_DBModel.T_Notices">
+              <MappingFragment StoreEntitySet="T_Notices">
+                <ScalarProperty Name="MeetingTime" ColumnName="MeetingTime" />
+                <ScalarProperty Name="MeetingDate" ColumnName="MeetingDate" />
+                <ScalarProperty Name="MeetingName" ColumnName="MeetingName" />
+                <ScalarProperty Name="Announcement" ColumnName="Announcement" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
